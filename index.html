@@ -10,10 +10,52 @@
     <script defer src="./main.js"></script>
   </head>
   <body>
-    <h1>Hello World</h1>
 
-    <div class="container">
+    <div class="input-colors-container">
+      <p>Select four colors by their RGB values.  For each red, green and blue value pick a number from 0 to 255.</p>
+      <table class="table table-hover table-responsive-lg">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Red</th>
+            <th scope="col">Green</th>
+            <th scope="col">Blue</th>
+            <th scope="col">Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td><input type="text" class="input-rgbval color1-r"></td>
+            <td><input type="text" class="input-rgbval color1-g"></td>
+            <td><input type="text" class="input-rgbval color1-b"></td>
+            <td><div class="sample"></div></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td><input type="text" class="input-rgbval color2-r"></td>
+            <td><input type="text" class="input-rgbval color2-g"></td>
+            <td><input type="text" class="input-rgbval color2-b"></td>
+            <td><div class="sample"></div></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td><input type="text" class="input-rgbval color3-r"></td>
+            <td><input type="text" class="input-rgbval color3-g"></td>
+            <td><input type="text" class="input-rgbval color3-b"></td>
+            <td><div class="sample"></div></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td><input type="text" class="input-rgbval color4-r"></td>
+            <td><input type="text" class="input-rgbval color4-g"></td>
+            <td><input type="text" class="input-rgbval color4-b"></td>
+            <td><div class="sample"></div></td>
+          </tr>
+        </tbody>
+      </table>
 
+      <button type="button" class="btn btn-primary create-grid">Create Grid</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
