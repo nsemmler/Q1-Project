@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
     <link rel="stylesheet" href="./main.css">
-    <script defer src="./main.js"></script>
+    <script defer src="./scripts/main.js"></script>
+    <script defer src="./scripts/generategrid.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg">
@@ -28,28 +29,28 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Top Left</th>
+            <th class="color-corner" scope="row"><img src="./icons/topleft.png" alt="top left corner" style="height: 50px; width: 50px;"></th>
             <td><input type="text" class="input-rgbval color1-r"></td>
             <td><input type="text" class="input-rgbval color1-g"></td>
             <td><input type="text" class="input-rgbval color1-b"></td>
             <td><div class="sample sample1"></div></td>
           </tr>
           <tr>
-            <th scope="row">Top Right</th>
+            <th class="color-corner" scope="row"><img src="./icons/topright.png" alt="top right corner" style="height: 50px; width: 50px;"></th>
             <td><input type="text" class="input-rgbval color2-r"></td>
             <td><input type="text" class="input-rgbval color2-g"></td>
             <td><input type="text" class="input-rgbval color2-b"></td>
             <td><div class="sample sample2"></div></td>
           </tr>
           <tr>
-            <th scope="row">Bottom Left</th>
+            <th class="color-corner" scope="row"><img src="./icons/bottomleft.png" alt="bottom left corner" style="height: 50px; width: 50px;"></th>
             <td><input type="text" class="input-rgbval color3-r"></td>
             <td><input type="text" class="input-rgbval color3-g"></td>
             <td><input type="text" class="input-rgbval color3-b"></td>
             <td><div class="sample sample3"></div></td>
           </tr>
           <tr>
-            <th scope="row">Bottom Right</th>
+            <th class="color-corner" scope="row"><img src="./icons/bottomright.png" alt="bottom right corner" style="height: 50px; width: 50px;"></th>
             <td><input type="text" class="input-rgbval color4-r"></td>
             <td><input type="text" class="input-rgbval color4-g"></td>
             <td><input type="text" class="input-rgbval color4-b"></td>
@@ -61,7 +62,6 @@
       <div class="submit">
         <button type="button" class="btn btn-primary create-grid">Create Grid</button>
       </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
