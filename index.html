@@ -10,9 +10,12 @@
     <script defer src="./main.js"></script>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">H<i class="far fa-heart"></i>E</a>
+    </nav>
 
     <div class="input-colors-container">
-      <p>Select four colors by their RGB values.  For each red, green and blue value pick a number from 0 to 255.</p>
+      <p class="rules"><span class="instructions">Instructions:</span><br> Select four colors by their RGB values.  For each value select a number from 0 to 255.</p>
       <table class="table table-hover table-responsive-lg">
         <thead>
           <tr>
@@ -55,7 +58,10 @@
         </tbody>
       </table>
 
-      <button type="button" class="btn btn-primary create-grid">Create Grid</button>
+      <div class="submit">
+        <button type="button" class="btn btn-primary create-grid">Create Grid</button>
+      </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
