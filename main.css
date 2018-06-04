@@ -21,3 +21,42 @@
 @media (min-width: 800px) {
   .container {  }
 }
+
+/* ----- Color Input View ----- */
+.instructions {
+  font-weight: bold;
+}
+
+.rules {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.create-grid {
+  align-self: center;
+}
+
+/* ----- Navbar ----- */
+.far {
+  font-size: 36px;
+  color: white;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #182c4c;
+  justify-content: center;
+}
