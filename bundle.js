@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module '/Users/nate/Documents/Galvanize/Q1/hue/scripts/main.js' from '/Users/nate/Documents/Galvanize/Q1/hue'");
