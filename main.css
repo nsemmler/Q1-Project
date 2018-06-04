@@ -2,8 +2,8 @@
 @media (max-width: 799px) {
   .input-rgbval {
     border: 1pt solid black;
-    width: 150px;
-    max-width: 150px;
+    width: 100px;
+    max-width: 100px;
     height: 35px;
     max-height: 35px;
   }
