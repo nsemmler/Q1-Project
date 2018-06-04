@@ -16,9 +16,13 @@ submit.addEventListener('click', (event) => {
   const g4Val = document.querySelector('.color4-g').value
   const b4Val = document.querySelector('.color4-b').value
 
+  const color1Sample = document.querySelector('.sample1')
+  const color2Sample = document.querySelector('.sample2')
+  const color3Sample = document.querySelector('.sample3')
+  const color4Sample = document.querySelector('.sample4')
 
-  console.log(`RGB1: (${r1Val},${g1Val},${b1Val})`)
-  console.log(`RGB2: (${r2Val},${g2Val},${b2Val})`)
-  console.log(`RGB3: (${r3Val},${g3Val},${b3Val})`)
-  console.log(`RGB4: (${r4Val},${g4Val},${b4Val})`)
+  color1Sample.style.background = 'rgb(' + [r1Val, g1Val, b1Val].join(',') + ')'
+  color2Sample.style.background = 'rgb(' + [r2Val, g2Val, b2Val].join(',') + ')'
+  color3Sample.style.background = 'rgb(' + [r3Val, g3Val, b3Val].join(',') + ')'
+  color4Sample.style.background = 'rgb(' + [r4Val, g4Val, b4Val].join(',') + ')'
 })
