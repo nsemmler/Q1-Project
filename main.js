@@ -1,28 +1,65 @@
 const submit = document.querySelector('.create-grid')
 
-submit.addEventListener('click', (event) => {
-  event.preventDefault()
+// RGB Inputs
+const r1Input = document.querySelector('.color1-r')
+const g1Input = document.querySelector('.color1-g')
+const b1Input = document.querySelector('.color1-b')
+const r2Input = document.querySelector('.color2-r')
+const g2Input = document.querySelector('.color2-g')
+const b2Input = document.querySelector('.color2-b')
+const r3Input = document.querySelector('.color3-r')
+const g3Input = document.querySelector('.color3-g')
+const b3Input = document.querySelector('.color3-b')
+const r4Input = document.querySelector('.color4-r')
+const g4Input = document.querySelector('.color4-g')
+const b4Input = document.querySelector('.color4-b')
 
-  const r1Val = document.querySelector('.color1-r').value
-  const g1Val = document.querySelector('.color1-g').value
-  const b1Val = document.querySelector('.color1-b').value
-  const r2Val = document.querySelector('.color2-r').value
-  const g2Val = document.querySelector('.color2-g').value
-  const b2Val = document.querySelector('.color2-b').value
-  const r3Val = document.querySelector('.color3-r').value
-  const g3Val = document.querySelector('.color3-g').value
-  const b3Val = document.querySelector('.color3-b').value
-  const r4Val = document.querySelector('.color4-r').value
-  const g4Val = document.querySelector('.color4-g').value
-  const b4Val = document.querySelector('.color4-b').value
+// Update color swatch when change RGB values
+function updateColorSample1 () {
+  const rVal = r1Input.value
+  const gVal = g1Input.value
+  const bVal = b1Input.value
+  const colorSample = document.querySelector('.sample1')
+  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
+}
 
-  const color1Sample = document.querySelector('.sample1')
-  const color2Sample = document.querySelector('.sample2')
-  const color3Sample = document.querySelector('.sample3')
-  const color4Sample = document.querySelector('.sample4')
+function updateColorSample2 () {
+  const rVal = r2Input.value
+  const gVal = g2Input.value
+  const bVal = b2Input.value
+  const colorSample = document.querySelector('.sample2')
+  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
+}
 
-  color1Sample.style.background = 'rgb(' + [r1Val, g1Val, b1Val].join(',') + ')'
-  color2Sample.style.background = 'rgb(' + [r2Val, g2Val, b2Val].join(',') + ')'
-  color3Sample.style.background = 'rgb(' + [r3Val, g3Val, b3Val].join(',') + ')'
-  color4Sample.style.background = 'rgb(' + [r4Val, g4Val, b4Val].join(',') + ')'
-})
+function updateColorSample3 () {
+  const rVal = r3Input.value
+  const gVal = g3Input.value
+  const bVal = b3Input.value
+  const colorSample = document.querySelector('.sample3')
+  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
+}
+
+function updateColorSample4 () {
+  const rVal = r4Input.value
+  const gVal = g4Input.value
+  const bVal = b4Input.value
+  const colorSample = document.querySelector('.sample4')
+  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
+}
+
+// Add change event listeners to every RGB input field
+r1Input.addEventListener('change', updateColorSample1)
+g1Input.addEventListener('change', updateColorSample1)
+b1Input.addEventListener('change', updateColorSample1)
+
+r2Input.addEventListener('change', updateColorSample2)
+g2Input.addEventListener('change', updateColorSample2)
+b2Input.addEventListener('change', updateColorSample2)
+
+r3Input.addEventListener('change', updateColorSample3)
+g3Input.addEventListener('change', updateColorSample3)
+b3Input.addEventListener('change', updateColorSample3)
+
+r4Input.addEventListener('change', updateColorSample4)
+g4Input.addEventListener('change', updateColorSample4)
+b4Input.addEventListener('change', updateColorSample4)
