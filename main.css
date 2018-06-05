@@ -43,7 +43,7 @@
 }
 
 /* ----- Navbar ----- */
-.far {
+.fa-heart {
   font-size: 36px;
   color: white;
 }
@@ -59,4 +59,26 @@
 .navbar {
   background-color: #182c4c;
   justify-content: center;
+}
+
+/* ----- Grid ----- */
+.tile {
+  border: 1px solid black;
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  max-height: 50px;
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  grid-template-rows: 33% 34% 33%;
+  grid-template-areas:
+    ". . ."
+    ". dot ."
+    ". . ."
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px;
 }
