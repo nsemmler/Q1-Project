@@ -1,12 +1,11 @@
-const sample = {
-  'tl': [82, 200, 20], 'tr': [50, 11, 231],
-  'bl': [10, 44, 63],   'br': [172, 25, 250]
-}
+var storedCornerInfo = localStorage.getItem('4corners')
+let sample = ''
+if (storedCornerInfo) sample = JSON.parse(storedCornerInfo)
 
-////////////////////////////////////////////////////////////////////////////////
 main()
 
 function main () {
+
   colorCorners()
 
   const tiles = document.querySelectorAll('.tile')
@@ -172,7 +171,6 @@ function colorRemainingTiles (tilesArr) {
     }
 
     if (tile.id == '10' || tile.id == '11') {
-      if (tile.id == '11') console.log(tile.style.background)
       const startR = parseInt(tilesArr[8].style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
       const startG = parseInt(tilesArr[8].style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
       const startB = parseInt(tilesArr[8].style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
@@ -194,7 +192,6 @@ function colorRemainingTiles (tilesArr) {
         tileColors[tile.id] = [[tileRColor, tileGColor, tileBColor], ]
       }
       rowAcc2++
-      if (tile.id == '11') console.log(tileColors)
     }
   })
 
