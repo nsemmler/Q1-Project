@@ -32,6 +32,53 @@ submit.addEventListener('click', (event) => {
 // Generates empty <divs> within the grid
 createGrid()
 
+// Swap colors of two tiles
+let firstColor
+let secondColor
+
+setTimeout(() => {
+  const allTiles = document.querySelectorAll('.tile')
+  const tiles = Array.from(allTiles)
+
+  tiles.forEach((tile) => {
+    tile.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      // Toggle 'selected' of same tile when clicked
+      if (tile.classList.contains('selected')) {
+        tile.classList.remove('selected')
+      } else {
+        tile.classList.add('selected')
+      }
+
+      const selectedTilesInfo = document.querySelectorAll('.selected')
+      let selectedTiles = Array.from(selectedTilesInfo)
+      console.log(selectedTiles);
+      if (selectedTiles.length === 2) {
+
+
+        const firstTile = selectedTiles[0]
+        const secondTile = selectedTiles[1]
+
+        firstColor = firstTile.style.background
+        secondColor = secondTile.style.background
+
+        firstTile.style.background = secondColor
+        secondTile.style.background = firstColor
+        firstTile.classList.remove('selected')
+        secondTile.classList.remove('selected')
+
+
+      }
+
+
+    })
+  })
+
+}, 250)
+
+
+
 // RGB Inputs
 const r1Input = document.querySelector('.color1-r')
 const g1Input = document.querySelector('.color1-g')
