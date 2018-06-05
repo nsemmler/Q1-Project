@@ -76,8 +76,12 @@
 }
 
 /* ----- Grid ----- */
-.tile {
+.selected {
   border: 1px solid black;
+}
+
+.tile {
+  /* border: 1px solid black; */
   width: 50px;
   max-width: 50px;
   height: 50px;
@@ -95,6 +99,7 @@
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px;
   grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  border: 1px solid black;
 }
 
 .grid-container {
