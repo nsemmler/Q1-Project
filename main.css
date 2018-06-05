@@ -95,16 +95,37 @@
     ". . ."
 }
 
+.fas {
+  font-size: 30px;
+}
+
+.restart {
+  margin-right: 20px;
+}
+
+.back {
+  margin-left: 20px;
+}
+
+.grid-tools {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+}
+
 .grid {
+  width: 300px;
+  max-width: 300px;
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px;
   grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
-  border: 1px solid black;
+  align-self: center;
 }
 
 .grid-container {
   margin-top: 20px;
   margin-bottom: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }

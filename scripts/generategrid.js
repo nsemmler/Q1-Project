@@ -83,9 +83,9 @@ function colorTopRow (tile, toprowAcc, corners, rowSteps) {
   const endG = corners['tr'][1]
   const endB = corners['tr'][2]
 
-  const rStep = Math.round((endR - startR) / rowSteps)
-  const gStep = Math.round((endG - startG) / rowSteps)
-  const bStep = Math.round((endB - startB) / rowSteps)
+  const rStep = Math.floor((endR - startR) / rowSteps)
+  const gStep = Math.floor((endG - startG) / rowSteps)
+  const bStep = Math.floor((endB - startB) / rowSteps)
 
   const tileRColor = startR + (toprowAcc * rStep)
   const tileGColor = startG + (toprowAcc * gStep)
@@ -103,9 +103,9 @@ function colorBottomRow (tile, lowrowAcc, corners, rowSteps) {
   const endG = corners['br'][1]
   const endB = corners['br'][2]
 
-  const rStep = Math.round((endR - startR) / rowSteps)
-  const gStep = Math.round((endG - startG) / rowSteps)
-  const bStep = Math.round((endB - startB) / rowSteps)
+  const rStep = Math.floor((endR - startR) / rowSteps)
+  const gStep = Math.floor((endG - startG) / rowSteps)
+  const bStep = Math.floor((endB - startB) / rowSteps)
 
   const tileRColor = startR + (lowrowAcc * rStep)
   const tileGColor = startG + (lowrowAcc * gStep)
@@ -123,9 +123,9 @@ function colorFirstColumn (tile, firstcolAcc, corners, colSteps) {
   const endG = corners['bl'][1]
   const endB = corners['bl'][2]
 
-  const rStep = Math.round((endR - startR) / colSteps)
-  const gStep = Math.round((endG - startG) / colSteps)
-  const bStep = Math.round((endB - startB) / colSteps)
+  const rStep = Math.floor((endR - startR) / colSteps)
+  const gStep = Math.floor((endG - startG) / colSteps)
+  const bStep = Math.floor((endB - startB) / colSteps)
 
   const tileRColor = startR + (firstcolAcc * rStep)
   const tileGColor = startG + (firstcolAcc * gStep)
@@ -143,9 +143,9 @@ function colorLastColumn (tile, lastcolAcc, corners, colSteps) {
   const endG = corners['br'][1]
   const endB = corners['br'][2]
 
-  const rStep = Math.round((endR - startR) / colSteps)
-  const gStep = Math.round((endG - startG) / colSteps)
-  const bStep = Math.round((endB - startB) / colSteps)
+  const rStep = Math.floor((endR - startR) / colSteps)
+  const gStep = Math.floor((endG - startG) / colSteps)
+  const bStep = Math.floor((endB - startB) / colSteps)
 
   const tileRColor = startR + (lastcolAcc * rStep)
   const tileGColor = startG + (lastcolAcc * gStep)
@@ -180,9 +180,9 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
       const endG = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
       const endB = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
 
-      const rStep = Math.round((endR - startR) / rowSteps)
-      const gStep = Math.round((endG - startG) / rowSteps)
-      const bStep = Math.round((endB - startB) / rowSteps)
+      const rStep = Math.floor((endR - startR) / rowSteps)
+      const gStep = Math.floor((endG - startG) / rowSteps)
+      const bStep = Math.floor((endB - startB) / rowSteps)
 
       const tileRColor = startR + (rowAcc * rStep)
       const tileGColor = startG + (rowAcc * gStep)
@@ -221,9 +221,9 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
       const endG = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
       const endB = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
 
-      const rStep = Math.round((endR - startR) / colSteps)
-      const gStep = Math.round((endG - startG) / colSteps)
-      const bStep = Math.round((endB - startB) / colSteps)
+      const rStep = Math.floor((endR - startR) / colSteps)
+      const gStep = Math.floor((endG - startG) / colSteps)
+      const bStep = Math.floor((endB - startB) / colSteps)
 
       const tileRColor = startR + (index * rStep)
       const tileGColor = startG + (index * gStep)
@@ -248,10 +248,9 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
 
   for (let id in tileColors) {
     const arrOfRGBs = tileColors[id]
-    // if (arrOfRGBs[0] === undefined || arrOfRGBs[1] === undefined) console.log(tileColors)
-    const rVal = Math.round(arrOfRGBs[0][0] + arrOfRGBs[1][0] / 2)
-    const gVal = Math.round(arrOfRGBs[0][1] + arrOfRGBs[1][1] / 2)
-    const bVal = Math.round(arrOfRGBs[0][2] + arrOfRGBs[1][2] / 2)
+    const rVal = Math.floor((arrOfRGBs[0][0] + arrOfRGBs[1][0]) / 2)
+    const gVal = Math.floor((arrOfRGBs[0][1] + arrOfRGBs[1][1]) / 2)
+    const bVal = Math.floor((arrOfRGBs[0][2] + arrOfRGBs[1][2]) / 2)
     const tile = document.getElementById(id)
     tile.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
   }
