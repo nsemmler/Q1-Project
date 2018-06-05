@@ -19,7 +19,21 @@
 
 /* Viewport width above 800px */
 @media (min-width: 800px) {
-  .container {  }
+  .input-rgbval {
+    border: 1pt solid black;
+    width: 100px;
+    max-width: 100px;
+    height: 35px;
+    max-height: 35px;
+  }
+
+  .sample {
+    border: 1pt solid black;
+    width: 75px;
+    max-width: 75px;
+    height: 75px;
+    max-height: 75px;
+  }
 }
 
 /* ----- Color Input View ----- */
@@ -79,6 +93,13 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+}
+
+.grid-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 }
