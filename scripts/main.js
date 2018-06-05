@@ -27,6 +27,10 @@ submit.addEventListener('click', (event) => {
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
   // Fills grid with paint
   generateGrid(6, 10)
+
+  setTimeout(() => {
+    scrambleGrid()
+  }, 2000)
 })
 
 // Generates empty <divs> within the grid
@@ -77,7 +81,42 @@ setTimeout(() => {
 
 }, 250)
 
+// Shuffle grid
+let swapColorsObj = {}
+let swappableIndexes = []
 
+function scrambleGrid () {
+  const allTiles = document.querySelectorAll('.tile')
+  const tiles = Array.from(allTiles)
+
+  tiles.forEach((tile) => {
+    if (tile.classList.length === 1) { // don't swap the corners
+      swapColorsObj[tile.id] = {'oldColor': tile.style.background, 'newColor': null }
+    }
+
+  })
+
+  for (let index in swapColorsObj) {
+    swappableIndexes.push(index)
+  }
+
+  swappableIndexes = shuffle(swappableIndexes)
+  let swappedIndex = 0
+
+  for (let index in swapColorsObj) {
+    const otherTileID = parseInt(swappableIndexes[swappedIndex])
+    const otherTileColor = swapColorsObj[otherTileID]['oldColor']
+    swapColorsObj[index]['newColor'] = otherTileColor
+    swappedIndex++
+  }
+
+
+  tiles.forEach((tile) => {
+    if (tile.classList.length === 1) {
+      tile.style.background = swapColorsObj[tile.id]['newColor']
+    }
+  })
+}
 
 // RGB Inputs
 const r1Input = document.querySelector('.color1-r')
@@ -165,4 +204,17 @@ function updateColorSample4 () {
   const bVal = b4Input.value
   const colorSample = document.querySelector('.sample4')
   colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
+}
+
+// Fisher-Yates shuffle algorithm
+function shuffle(array) {
+  var j, x, i;
+  for (i = array.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = array[i];
+      array[i] = array[j];
+      array[j] = x;
+  }
+
+  return array;
 }
