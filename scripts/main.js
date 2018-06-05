@@ -57,10 +57,8 @@ setTimeout(() => {
 
       const selectedTilesInfo = document.querySelectorAll('.selected')
       let selectedTiles = Array.from(selectedTilesInfo)
-      console.log(selectedTiles);
+
       if (selectedTiles.length === 2) {
-
-
         const firstTile = selectedTiles[0]
         const secondTile = selectedTiles[1]
 
@@ -71,14 +69,9 @@ setTimeout(() => {
         secondTile.style.background = firstColor
         firstTile.classList.remove('selected')
         secondTile.classList.remove('selected')
-
-
       }
-
-
     })
   })
-
 }, 250)
 
 // Shuffle grid
@@ -93,12 +86,9 @@ function scrambleGrid () {
     if (tile.classList.length === 1) { // don't swap the corners
       swapColorsObj[tile.id] = {'oldColor': tile.style.background, 'newColor': null }
     }
-
   })
 
-  for (let index in swapColorsObj) {
-    swappableIndexes.push(index)
-  }
+  for (let index in swapColorsObj) { swappableIndexes.push(index) }
 
   swappableIndexes = shuffle(swappableIndexes)
   let swappedIndex = 0
@@ -109,7 +99,6 @@ function scrambleGrid () {
     swapColorsObj[index]['newColor'] = otherTileColor
     swappedIndex++
   }
-
 
   tiles.forEach((tile) => {
     if (tile.classList.length === 1) {
@@ -207,7 +196,7 @@ function updateColorSample4 () {
 }
 
 // Fisher-Yates shuffle algorithm
-function shuffle(array) {
+function shuffle (array) {
   var j, x, i;
   for (i = array.length - 1; i > 0; i--) {
       j = Math.floor(Math.random() * (i + 1));
@@ -218,3 +207,14 @@ function shuffle(array) {
 
   return array;
 }
+
+// Re-shuffle puzzle when click restart button
+const restartBtn = document.querySelector('.fa-redo-alt')
+restartBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const submitBtn = document.querySelector('.create-grid')
+  restartBtn.onclick = function() {
+     submitBtn.click();
+  };
+})
