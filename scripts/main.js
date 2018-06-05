@@ -1,5 +1,35 @@
 const submit = document.querySelector('.create-grid')
 
+// On Submit:
+submit.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const r1Val = parseInt(r1Input.value)
+  const g1Val = parseInt(g1Input.value)
+  const b1Val = parseInt(b1Input.value)
+  const r2Val = parseInt(r2Input.value)
+  const g2Val = parseInt(g2Input.value)
+  const b2Val = parseInt(b2Input.value)
+  const r3Val = parseInt(r3Input.value)
+  const g3Val = parseInt(g3Input.value)
+  const b3Val = parseInt(b3Input.value)
+  const r4Val = parseInt(r4Input.value)
+  const g4Val = parseInt(g4Input.value)
+  const b4Val = parseInt(b4Input.value)
+
+  const cornersInfo = {
+    'tl': [r1Val, g1Val, b1Val],
+    'tr': [r2Val, g2Val, b2Val],
+    'bl': [r3Val, g3Val, b3Val],
+    'br': [r4Val, g4Val, b4Val]
+  }
+
+  localStorage.setItem('4corners', JSON.stringify(cornersInfo))
+  // Fills grid with paint
+  generateGrid(6, 10)
+})
+
+// Generates empty <divs> within the grid
 createGrid()
 
 // RGB Inputs
@@ -89,31 +119,3 @@ function updateColorSample4 () {
   const colorSample = document.querySelector('.sample4')
   colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
 }
-
-// On Submit:
-submit.addEventListener('click', (event) => {
-  event.preventDefault()
-
-  const r1Val = parseInt(r1Input.value)
-  const g1Val = parseInt(g1Input.value)
-  const b1Val = parseInt(b1Input.value)
-  const r2Val = parseInt(r2Input.value)
-  const g2Val = parseInt(g2Input.value)
-  const b2Val = parseInt(b2Input.value)
-  const r3Val = parseInt(r3Input.value)
-  const g3Val = parseInt(g3Input.value)
-  const b3Val = parseInt(b3Input.value)
-  const r4Val = parseInt(r4Input.value)
-  const g4Val = parseInt(g4Input.value)
-  const b4Val = parseInt(b4Input.value)
-
-  const cornersInfo = {
-    'tl': [r1Val, g1Val, b1Val],
-    'tr': [r2Val, g2Val, b2Val],
-    'bl': [r3Val, g3Val, b3Val],
-    'br': [r4Val, g4Val, b4Val]
-  }
-
-  localStorage.setItem('4corners', JSON.stringify(cornersInfo))
-  generateGrid()
-})
