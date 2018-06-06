@@ -129,3 +129,33 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.colortoolcontainer input {
+  height: 75px;
+  width: 75px;
+}
+
+.colortoolcontainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*  */
+
+/* #spectrum-color {
+  float: left;
+}
+
+#spectrum-all {
+  float: left;
+  margin-left: 15px;
+} */
+
+.selected-color, .selected-color-tl, .selected-color-br, .selected-color-bl {
+  width: 100px;
+  height: 100px;
+  /* float: left; */
+  /* margin-left: 15px; */
+  border: 1px solid black;
+  /* margin-top: 10px; */
+}
