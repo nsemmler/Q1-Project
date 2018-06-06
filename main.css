@@ -86,6 +86,25 @@
   max-width: 50px;
   height: 50px;
   max-height: 50px;
+  /* display: grid;
+  grid-template-columns: 33% 34% 33%;
+  grid-template-rows: 33% 34% 33%;
+  grid-template-areas: */
+
+}
+
+.fa-circle::before {
+  grid-area: dot;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.fa-circle {
+  grid-area: dot;
+  font-size: 15px;
+}
+
+.fixedtile {
   display: grid;
   grid-template-columns: 33% 34% 33%;
   grid-template-rows: 33% 34% 33%;
@@ -167,7 +186,7 @@
 } */
 
 
-/* You Won! Alert */
+/* ----- Winner Banner ----- */
 .alertmsg {
   padding: 5px 0;
   margin: 0;
