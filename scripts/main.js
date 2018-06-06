@@ -1,4 +1,5 @@
 const submit = document.querySelector('.create-grid')
+var originalGrid = {}
 
 // On Submit:
 submit.addEventListener('click', (event) => {
@@ -22,7 +23,8 @@ submit.addEventListener('click', (event) => {
   }
 
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
-  generateGrid(6, 10)
+  originalGrid = generateGrid(6, 10)
+
   setTimeout(() => {
     scrambleGrid()
   }, 2000)
@@ -44,6 +46,7 @@ createGrid()
 // Swap colors of two tiles
 let firstColor
 let secondColor
+let correctTilesObj = {}
 
 setTimeout(() => {
   const allTiles = document.querySelectorAll('.tile')
@@ -69,11 +72,13 @@ setTimeout(() => {
 
         firstColor = firstTile.style.background
         secondColor = secondTile.style.background
-
         firstTile.style.background = secondColor
         secondTile.style.background = firstColor
+
         firstTile.classList.remove('selected')
         secondTile.classList.remove('selected')
+
+        checkUserAnswer(correctTilesObj)
       }
     })
   })
@@ -112,94 +117,6 @@ function scrambleGrid () {
   })
 }
 
-// RGB Inputs
-const r1Input = document.querySelector('.color1-r')
-const g1Input = document.querySelector('.color1-g')
-const b1Input = document.querySelector('.color1-b')
-const r2Input = document.querySelector('.color2-r')
-const g2Input = document.querySelector('.color2-g')
-const b2Input = document.querySelector('.color2-b')
-const r3Input = document.querySelector('.color3-r')
-const g3Input = document.querySelector('.color3-g')
-const b3Input = document.querySelector('.color3-b')
-const r4Input = document.querySelector('.color4-r')
-const g4Input = document.querySelector('.color4-g')
-const b4Input = document.querySelector('.color4-b')
-
-/* MAKE THIS OPTIONAL TO USER - ASK IF WANT TO RESTORE OLD SESSION */
-var storedCornerInfo = localStorage.getItem('4corners')
-if (storedCornerInfo) {
-  let previousGame = JSON.parse(storedCornerInfo)
-
-  r1Input.value = previousGame['bl'][0]
-  g1Input.value = previousGame['bl'][1]
-  b1Input.value = previousGame['bl'][2]
-  r2Input.value = previousGame['br'][0]
-  g2Input.value = previousGame['br'][1]
-  b2Input.value = previousGame['br'][2]
-  r3Input.value = previousGame['tl'][0]
-  g3Input.value = previousGame['tl'][1]
-  b3Input.value = previousGame['tl'][2]
-  r4Input.value = previousGame['tr'][0]
-  g4Input.value = previousGame['tr'][1]
-  b4Input.value = previousGame['tr'][2]
-
-  updateColorSample1()
-  updateColorSample2()
-  updateColorSample3()
-  updateColorSample4()
-}
-
-// Add change event listeners to every RGB input field
-r1Input.addEventListener('change', updateColorSample1)
-g1Input.addEventListener('change', updateColorSample1)
-b1Input.addEventListener('change', updateColorSample1)
-
-r2Input.addEventListener('change', updateColorSample2)
-g2Input.addEventListener('change', updateColorSample2)
-b2Input.addEventListener('change', updateColorSample2)
-
-r3Input.addEventListener('change', updateColorSample3)
-g3Input.addEventListener('change', updateColorSample3)
-b3Input.addEventListener('change', updateColorSample3)
-
-r4Input.addEventListener('change', updateColorSample4)
-g4Input.addEventListener('change', updateColorSample4)
-b4Input.addEventListener('change', updateColorSample4)
-
-// Update color swatch when change RGB values
-function updateColorSample1 () {
-  const rVal = r1Input.value
-  const gVal = g1Input.value
-  const bVal = b1Input.value
-  const colorSample = document.querySelector('.sample1')
-  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
-}
-
-function updateColorSample2 () {
-  const rVal = r2Input.value
-  const gVal = g2Input.value
-  const bVal = b2Input.value
-  const colorSample = document.querySelector('.sample2')
-  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
-}
-
-function updateColorSample3 () {
-  const rVal = r3Input.value
-  const gVal = g3Input.value
-  const bVal = b3Input.value
-  const colorSample = document.querySelector('.sample3')
-  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
-}
-
-function updateColorSample4 () {
-  const rVal = r4Input.value
-  const gVal = g4Input.value
-  const bVal = b4Input.value
-  const colorSample = document.querySelector('.sample4')
-  colorSample.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
-}
-
 // Fisher-Yates shuffle algorithm
 function shuffle (array) {
   var j, x, i;
@@ -213,13 +130,26 @@ function shuffle (array) {
   return array;
 }
 
-// Re-shuffle puzzle when click restart button
-const restartBtn = document.querySelector('.fa-redo-alt')
-restartBtn.addEventListener('click', (event) => {
-  event.preventDefault()
+function checkUserAnswer (correctTilesObj) {
+  const allTiles = document.querySelectorAll('.tile')
+  const tiles = Array.from(allTiles)
+  let originalIndex = 1
 
-  const submitBtn = document.querySelector('.create-grid')
-  restartBtn.onclick = function() {
-     submitBtn.click();
-  };
-})
+  tiles.forEach((tile) => {
+    const originalTileColor = originalGrid[originalIndex]
+    const currentTileColor = tile.style.background
+
+    if (currentTileColor == originalTileColor) {
+      correctTilesObj[originalIndex] = true
+    } else {
+      correctTilesObj[originalIndex] = false
+    }
+
+    originalIndex++
+  })
+
+  let correctSolution = [...new Set(Object.values(correctTilesObj))] // returns unique array of correctTilesObj values
+  if (correctSolution.length === 1 && correctSolution[0] === true) {
+    console.log('You did it!! You won!')
+  }
+}
