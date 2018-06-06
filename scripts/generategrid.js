@@ -47,6 +47,10 @@ function generateGrid (gridWidth, gridHeight) {
   })
 
   colorRemainingTiles(tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastColIDs, numTiles, gridWidth, gridHeight)
+
+  let originalGrid = {}
+  preserveOriginalGrid(tilesArr, originalGrid)
+  return originalGrid
 }
 
 function colorCorners(corners) {
@@ -254,4 +258,12 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
     const tile = document.getElementById(id)
     tile.style.background = 'rgb(' + [rVal, gVal, bVal].join(',') + ')'
   }
+}
+
+function preserveOriginalGrid (tilesArr, originalGrid) {
+  tilesArr.forEach((tile) => {
+    const color = tile.style.background
+    const id = tile.id
+    originalGrid[id] = color
+  })
 }
