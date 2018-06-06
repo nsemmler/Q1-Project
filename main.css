@@ -114,8 +114,10 @@
 }
 
 .grid {
-  width: 300px;
-  max-width: 300px;
+  border: 1px solid black;
+  /* width: 300px; */
+  max-width: 302px;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px;
   grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
@@ -140,22 +142,8 @@
   justify-content: space-around;
 }
 
-/*  */
-
-/* #spectrum-color {
-  float: left;
-}
-
-#spectrum-all {
-  float: left;
-  margin-left: 15px;
-} */
-
 .selected-color, .selected-color-tl, .selected-color-br, .selected-color-bl {
   width: 100px;
   height: 100px;
-  /* float: left; */
-  /* margin-left: 15px; */
   border: 1px solid black;
-  /* margin-top: 10px; */
 }
