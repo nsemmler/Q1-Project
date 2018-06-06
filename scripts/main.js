@@ -35,9 +35,11 @@ submit.addEventListener('click', (event) => {
 
   toggleFixedTileIconColor()
 
+  animateGridCountdownToShuffle()
+
   setTimeout(() => {
     scrambleGrid()
-  }, 2000)
+  }, 3000)
 })
 
 // Converters between HEX & RGB
@@ -216,4 +218,29 @@ function toggleFixedTileIconColor () {
   icons.forEach((icon) => {
     icon.style.color = 'black'
   })
+}
+
+function animateGridCountdownToShuffle () {
+  const grid = document.querySelector('.grid')
+
+  grid.style.transform = 'scale(1.05)'
+  setTimeout(() => {
+    grid.style.transform = 'scale(1)'
+
+    setTimeout(() => {
+      grid.style.transform = 'scale(1.05)'
+
+      setTimeout(() => {
+        grid.style.transform = 'scale(1)'
+
+        setTimeout(() => {
+          grid.style.transform = 'scale(1.05)'
+
+          setTimeout(() => {
+            grid.style.transform = 'scale(1)'
+          }, 500)
+        }, 500)
+      }, 500)
+    }, 500)
+  }, 500)
 }

@@ -81,16 +81,10 @@
 }
 
 .tile {
-  /* border: 1px solid black; */
   width: 50px;
-  max-width: 50px;
+  /* max-width: 50px; */
   height: 50px;
-  max-height: 50px;
-  /* display: grid;
-  grid-template-columns: 33% 34% 33%;
-  grid-template-rows: 33% 34% 33%;
-  grid-template-areas: */
-
+  /* max-height: 50px; */
 }
 
 .fa-circle::before {
@@ -136,15 +130,23 @@
   margin: 15px 0px;
 }
 
+.grid:hover {
+  transform: scale(1.05);
+}
+
 .grid {
   border: 1px solid black;
-  /* width: 300px; */
-  max-width: 302px;
+  width: 302px;
+  height: 502px;
+  /* max-width: 302px; */
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px;
   grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
   align-self: center;
+
+  transition: transform 0.5s cubic-bezier(.60,.01,.40,.99);
+  transform: scale(1);
 }
 
 .grid-container {
