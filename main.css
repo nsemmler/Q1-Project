@@ -255,6 +255,10 @@
 }
 
 /* ----- Hint ----- */
+.progress-bar {
+  background-color: #182c4c;
+}
+
 .progress {
   width: 80%;
   margin-left: 10%;
