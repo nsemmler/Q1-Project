@@ -61,6 +61,23 @@
   box-shadow: none !important;
 }
 
+.mirror:focus, .mirror:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn:focus, .btn:active {
+  background: #182c4c;
+  color: white;
+  border: none;
+}
+
+.btn {
+  background: #182c4c;
+  color: white;
+  border: none;
+}
+
 /* ----- Navbar ----- */
 .fa-heart {
   font-size: 36px;
@@ -211,4 +228,28 @@
   display: flex;
   justify-content: center;
   padding: 5px 0px 5px 0px;
+}
+
+/* ----- Solution Grid ----- */
+.solution {
+  border: 1px solid black;
+  width: 302px;
+  height: 502px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  align-self: center;
+  position: absolute;
+  bottom: 106px;
+  display: none;
+}
+
+.grid-solution {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
