@@ -147,9 +147,9 @@
 }
 
 .grid-tools {
+  margin: 15px 0px;
   display: flex;
   justify-content: center;
-  margin: 15px 0px;
 }
 
 .grid:hover {
@@ -252,4 +252,17 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+}
+
+/* ----- Hint ----- */
+.progress {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.toolbelt {
+  width: 302px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
