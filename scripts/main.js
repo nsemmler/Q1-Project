@@ -55,6 +55,12 @@ setTimeout(() => {
   const tiles = Array.from(allTiles)
 
   tiles.forEach((tile) => {
+    if (tile.classList.contains('fixedtile')) {
+      removeCornerTilesFromGettingClickEvents(tiles, tile)
+    }
+  })
+
+  tiles.forEach((tile) => {
     tile.addEventListener('click', (event) => {
       event.preventDefault()
 
@@ -162,4 +168,9 @@ function checkUserAnswer (correctTilesObj) {
       }, 2000)
     }
   }
+}
+
+function removeCornerTilesFromGettingClickEvents (array, element) {
+  const index = array.indexOf(element)
+  array.splice(index, 1)
 }
