@@ -147,3 +147,38 @@
   height: 100px;
   border: 1px solid black;
 }
+
+/* .grid-solution {
+  border: 1px solid black;
+  max-width: 302px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  align-self: center;
+}
+
+.grid-solution-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+
+/* You Won! Alert */
+.alertmsg {
+  padding: 5px 0;
+  margin: 0;
+}
+
+.alert-success {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0px 5px 0px;
+}
