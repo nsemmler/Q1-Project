@@ -10,11 +10,13 @@ function createGrid () {
 }
 
 function createSolutionGrid (originalGrid) {
+  const solution = document.querySelector('.solution')
   let array = Array.from(Array(60).keys())
   let acc = 1
 
+  if (solution.innerHTML.includes('fixedtile')) solution.innerHTML = ''
+
   array.forEach((tile) => {
-    const solution = document.querySelector('.solution')
     solution.innerHTML += solutionTemplate(acc)
     acc++
   })

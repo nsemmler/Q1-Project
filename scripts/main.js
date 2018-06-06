@@ -36,9 +36,7 @@ submit.addEventListener('click', (event) => {
 
   createSolutionGrid(originalGrid)
   colorInSolutionGrid()
-
   toggleFixedTileIconColor()
-
   animateGridCountdownToShuffle()
 
   setTimeout(() => {
