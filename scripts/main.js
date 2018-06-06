@@ -25,8 +25,10 @@ submit.addEventListener('click', (event) => {
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
   originalGrid = generateGrid(6, 10)
 
+  // createSolutionGrid()
+
   setTimeout(() => {
-    scrambleGrid()
+    // scrambleGrid()
   }, 2000)
 })
 
@@ -148,8 +150,16 @@ function checkUserAnswer (correctTilesObj) {
     originalIndex++
   })
 
-  let correctSolution = [...new Set(Object.values(correctTilesObj))] // returns unique array of correctTilesObj values
+  let correctSolution = [...new Set(Object.values(correctTilesObj))]
   if (correctSolution.length === 1 && correctSolution[0] === true) {
-    console.log('You did it!! You won!')
+    const alert = document.querySelector('.alert-success')
+
+    if (alert.style.display == 'none') {
+      alert.style.display = 'flex'
+
+      setTimeout(() => {
+        alert.style.display = 'none'
+      }, 2000)
+    }
   }
 }
