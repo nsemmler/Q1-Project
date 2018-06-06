@@ -1,4 +1,5 @@
 const submit = document.querySelector('.create-grid')
+const mirror = document.querySelector('.mirror')
 var originalGrid = {}
 var storedCornerInfo = localStorage.getItem('4corners')
 let corners = ''
@@ -31,7 +32,8 @@ submit.addEventListener('click', (event) => {
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
   originalGrid = generateGrid(6, 10)
 
-  // createSolutionGrid()
+  createSolutionGrid(originalGrid)
+  colorInSolutionGrid()
 
   toggleFixedTileIconColor()
 
@@ -39,7 +41,22 @@ submit.addEventListener('click', (event) => {
 
   setTimeout(() => {
     scrambleGrid()
+    mirror.style.display = 'block'
   }, 3000)
+})
+
+// Click Mirror button:
+mirror.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const solution = document.querySelector('.solution')
+  if (solution.style.display === 'none') {
+    solution.style.display = 'grid'
+    mirror.textContent = 'Return to Game'
+  } else {
+    solution.style.display = 'none'
+    mirror.textContent = 'Show Solution'
+  }
 })
 
 // Converters between HEX & RGB
@@ -243,4 +260,14 @@ function animateGridCountdownToShuffle () {
       }, 500)
     }, 500)
   }, 500)
+}
+
+function colorInSolutionGrid () {
+  const solutionTiles = document.querySelectorAll('.soln-tile')
+  const solution = Array.from(solutionTiles)
+
+  solution.forEach((solntile) => {
+    const id = solntile.id.replace('S', '')
+    solntile.style.background = originalGrid[id]
+  })
 }
