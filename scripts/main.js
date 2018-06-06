@@ -4,34 +4,39 @@ const submit = document.querySelector('.create-grid')
 submit.addEventListener('click', (event) => {
   event.preventDefault()
 
-  const r1Val = parseInt(r1Input.value)
-  const g1Val = parseInt(g1Input.value)
-  const b1Val = parseInt(b1Input.value)
-  const r2Val = parseInt(r2Input.value)
-  const g2Val = parseInt(g2Input.value)
-  const b2Val = parseInt(b2Input.value)
-  const r3Val = parseInt(r3Input.value)
-  const g3Val = parseInt(g3Input.value)
-  const b3Val = parseInt(b3Input.value)
-  const r4Val = parseInt(r4Input.value)
-  const g4Val = parseInt(g4Input.value)
-  const b4Val = parseInt(b4Input.value)
+  const color1 = document.querySelector('.color1')
+  const color2 = document.querySelector('.color2')
+  const color3 = document.querySelector('.color3')
+  const color4 = document.querySelector('.color4')
+
+  tl = hexToRgb(color1.value)
+  tr = hexToRgb(color2.value)
+  bl = hexToRgb(color3.value)
+  br = hexToRgb(color4.value)
 
   const cornersInfo = {
-    'tl': [r1Val, g1Val, b1Val],
-    'tr': [r2Val, g2Val, b2Val],
-    'bl': [r3Val, g3Val, b3Val],
-    'br': [r4Val, g4Val, b4Val]
+    'tl': tl,
+    'tr': tr,
+    'bl': bl,
+    'br': br
   }
 
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
-  // Fills grid with paint
   generateGrid(6, 10)
-
   setTimeout(() => {
     scrambleGrid()
   }, 2000)
 })
+
+// Convert HEX to RGB
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const rVal = parseInt(result[1], 16)
+  const gVal = parseInt(result[2], 16)
+  const bVal = parseInt(result[3], 16)
+
+  return result ? [rVal, gVal, bVal] : null
+}
 
 // Generates empty <divs> within the grid
 createGrid()
