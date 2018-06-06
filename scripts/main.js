@@ -1,5 +1,11 @@
 const submit = document.querySelector('.create-grid')
 var originalGrid = {}
+var storedCornerInfo = localStorage.getItem('4corners')
+let corners = ''
+if (storedCornerInfo) {
+  corners = JSON.parse(storedCornerInfo)
+  fillInColorsWithPreviousColors(corners)
+}
 
 // On Submit:
 submit.addEventListener('click', (event) => {
@@ -27,12 +33,14 @@ submit.addEventListener('click', (event) => {
 
   // createSolutionGrid()
 
+  toggleFixedTileIconColor()
+
   setTimeout(() => {
-    // scrambleGrid()
+    scrambleGrid()
   }, 2000)
 })
 
-// Convert HEX to RGB
+// Converters between HEX & RGB
 function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   const rVal = parseInt(result[1], 16)
@@ -40,6 +48,15 @@ function hexToRgb(hex) {
   const bVal = parseInt(result[3], 16)
 
   return result ? [rVal, gVal, bVal] : null
+}
+
+function componentToHex(c) {
+  const hex = c.toString(16)
+  return hex.length == 1 ? "0" + hex : hex
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
 // Generates empty <divs> within the grid
@@ -173,4 +190,30 @@ function checkUserAnswer (correctTilesObj) {
 function removeCornerTilesFromGettingClickEvents (array, element) {
   const index = array.indexOf(element)
   array.splice(index, 1)
+}
+
+function fillInColorsWithPreviousColors (corners) {
+  const color1 = document.querySelector('.color1')
+  const color2 = document.querySelector('.color2')
+  const color3 = document.querySelector('.color3')
+  const color4 = document.querySelector('.color4')
+
+  const prevColor1 = rgbToHex(corners['tl'][0], corners['tl'][1], corners['tl'][2])
+  const prevColor2 = rgbToHex(corners['tr'][0], corners['tr'][1], corners['tr'][2])
+  const prevColor3 = rgbToHex(corners['bl'][0], corners['bl'][1], corners['bl'][2])
+  const prevColor4 = rgbToHex(corners['br'][0], corners['br'][1], corners['br'][2])
+
+  color1.value = prevColor1
+  color2.value = prevColor2
+  color3.value = prevColor3
+  color4.value = prevColor4
+}
+
+function toggleFixedTileIconColor () {
+  const fixedIcons = document.querySelectorAll('.fa-circle')
+  const icons = Array.from(fixedIcons)
+
+  icons.forEach((icon) => {
+    icon.style.color = 'black'
+  })
 }
