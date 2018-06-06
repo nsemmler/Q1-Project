@@ -56,6 +56,11 @@
   align-self: center;
 }
 
+.create-grid:focus, .create-grid:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* ----- Navbar ----- */
 .fa-heart {
   font-size: 36px;
