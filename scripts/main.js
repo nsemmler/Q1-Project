@@ -1,14 +1,16 @@
 const submit = document.querySelector('.create-grid')
 const mirror = document.querySelector('.mirror')
-var originalGrid = {}
+const hint = document.querySelector('.hint')
+
 var storedCornerInfo = localStorage.getItem('4corners')
+var originalGrid = {}
 let corners = ''
 if (storedCornerInfo) {
   corners = JSON.parse(storedCornerInfo)
   fillInColorsWithPreviousColors(corners)
 }
 
-// On Submit:
+// Click Submit button:
 submit.addEventListener('click', (event) => {
   event.preventDefault()
 
@@ -42,6 +44,7 @@ submit.addEventListener('click', (event) => {
   setTimeout(() => {
     scrambleGrid()
     mirror.style.display = 'block'
+    hint.style.display = 'block'
   }, 3000)
 })
 
@@ -56,6 +59,21 @@ mirror.addEventListener('click', (event) => {
   } else {
     solution.style.display = 'none'
     mirror.textContent = 'Show Solution'
+  }
+})
+
+// Click Hint button:
+hint.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const progress = document.querySelector('.progress')
+  if (progress.style.display === 'none') {
+    progress.style.display = 'block'
+
+    const alert = document.querySelector('.alert')
+    if (alert.style.display === 'none') progress.style.marginTop = '15px'
+  } else {
+    progress.style.display = 'none'
   }
 })
 
@@ -192,6 +210,8 @@ function checkUserAnswer (correctTilesObj) {
     originalIndex++
   })
 
+  updateHintValue(correctTilesObj)
+
   let correctSolution = [...new Set(Object.values(correctTilesObj))]
   if (correctSolution.length === 1 && correctSolution[0] === true) {
     const alert = document.querySelector('.alert-success')
@@ -270,4 +290,27 @@ function colorInSolutionGrid () {
     const id = solntile.id.replace('S', '')
     solntile.style.background = originalGrid[id]
   })
+}
+
+function updateHintValue (correctTilesObj) {
+  const progress = document.querySelector('.progress')
+  const progressBar = document.querySelector('.progress-bar')
+
+  const arrOfWhetherTileColorIsCorrect = Object.values(correctTilesObj)
+  const numTiles = arrOfWhetherTileColorIsCorrect.length
+  let numTrue = 0
+  let numFalse = 0
+
+  arrOfWhetherTileColorIsCorrect.forEach((bool) => {
+    if (bool) {
+      numTrue++
+    } else {
+      numFalse++
+    }
+  })
+
+  const percentageOfTilesCorrect = Math.ceil((numTrue / numTiles) * 100)
+  progressBar.style.width = `${percentageOfTilesCorrect}%`
+  progressBar.style.ariaValuenow = `${percentageOfTilesCorrect}`
+  progressBar.textContent = `${percentageOfTilesCorrect}%`
 }
