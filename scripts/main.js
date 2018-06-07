@@ -5,15 +5,6 @@ const submit = document.querySelector('.create-grid')
 const mirror = document.querySelector('.mirror')
 const hint = document.querySelector('.hint')
 
-// $('.rulesbtn').click(function () {
-//   console.log('clicked jQuery')
-// })
-//
-// rulesbtn.addEventListener('click', (event) => {
-//   event.preventDefault()
-//   console.log('clicked JS')
-// })
-
 var storedCornerInfo = localStorage.getItem('4corners')
 var originalGrid = {}
 let corners = ''
@@ -83,16 +74,6 @@ rulesicon.addEventListener('click', (event) => {
     rulesicon.className = 'fas fa-angle-up rulesicon'
   }
 })
-
-// do {
-//   rules.style.paddingTop = '0'
-//   rules.style.paddingBottom = '0'
-// } while (rules.classList.contains('collapsing'))
-
-// do {
-//   rules.style.paddingTop = '8px'
-//   rules.style.paddingBottom = '8px'
-// } while (!rules.classList.contains('collapsing'))
 
 // Click Mirror button:
 mirror.addEventListener('click', (event) => {
@@ -182,6 +163,8 @@ function addClickEventsToTiles () {
         secondColor = secondTile.style.background
         firstTile.style.background = secondColor
         secondTile.style.background = firstColor
+
+        // animateTileSwap(firstTile, secondTile)
 
         firstTile.classList.remove('selected')
         secondTile.classList.remove('selected')
@@ -360,3 +343,6 @@ function updateHintValue (correctTilesObj) {
   progressBar.style.ariaValuenow = `${percentageOfTilesCorrect}`
   // progressBar.textContent = `${percentageOfTilesCorrect}%`
 }
+
+// function animateTileSwap (firstTile, secondTile) {
+// }
