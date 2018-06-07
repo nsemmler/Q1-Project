@@ -1,5 +1,5 @@
-/* Viewport width below 800px */
-@media (max-width: 799px) {
+/* ----- Phone styling ----- */
+@media screen and (max-width: 479px) {
   .input-rgbval {
     border: 1pt solid black;
     width: 100px;
@@ -17,8 +17,7 @@
   }
 }
 
-/* Viewport width above 800px */
-@media (min-width: 800px) {
+@media screen and (min-width: 480px) {
   .input-rgbval {
     border: 1pt solid black;
     width: 100px;
@@ -42,13 +41,32 @@
 }
 
 .rules {
-  margin-top: 15px;
-  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0 10% 15px 10%;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .submit {
   width: 100%;
   display: flex;
+  justify-content: center;
+}
+
+.instructionsbtn {
+  /* border: 1px solid black; */
+  padding: 4px 4px 4px 4px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  align-self: center;
+  /* margin-left: 50%; */
+}
+
+.rulesbtn-container {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
