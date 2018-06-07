@@ -1,12 +1,12 @@
 /* ----- Phone styling ----- */
 @media screen and (max-width: 479px) {
-  .input-rgbval {
+  /* .input-rgbval {
     border: 1pt solid black;
     width: 100px;
     max-width: 100px;
     height: 35px;
     max-height: 35px;
-  }
+  } */
 
   .sample {
     border: 1pt solid black;
@@ -18,13 +18,13 @@
 }
 
 @media screen and (min-width: 480px) {
-  .input-rgbval {
+  /* .input-rgbval {
     border: 1pt solid black;
     width: 100px;
     max-width: 100px;
     height: 35px;
     max-height: 35px;
-  }
+  } */
 
   .sample {
     border: 1pt solid black;
@@ -208,9 +208,29 @@
   justify-content: center;
 }
 
-.colortoolcontainer input {
-  height: 75px;
-  width: 75px;
+.input-rgbval {
+  margin: 3px;
+  height: 50px;
+  width: 225px;
+  max-height: 50px;
+  max-width: 225px;
+}
+
+.cornericon {
+  margin-top: 8px;
+}
+
+.corner-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.color-input-layout-container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
 }
 
 .colortoolcontainer {
