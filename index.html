@@ -6,7 +6,7 @@
     <title>Hue Clone</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./stylesheets/main.css">
     <script defer src="./scripts/templates.js"></script>
     <script defer src="./scripts/tiles.js"></script>
     <script defer src="./scripts/generategrid.js"></script>
@@ -18,13 +18,19 @@
     </nav>
 
     <div class="input-colors-container">
-      <p class="rules">
-        <span class="instructions">Instructions:</span>
-        <br>
-        Select four colors and create a new grid.  Rearrange the tiles once they have been shuffled to mirror the original.
-        Tiles with a dot in the middle are fixed.
-        You can edit the colors at any time but it will require recreating a new grid.
-      </p>
+      <div class="rulesbtn-container">
+        <button class="instructionsbtn" data-toggle="collapse" data-target=".rules">View Instructions:</i></button>
+      </div>
+
+      <ul class="rules collapse">
+        <li class="instruction">Select four colors (one for each corner)</li>
+        <li class="instruction">Create the grid</li>
+        <li class="instruction">The tiles will be shuffled after 3 seconds</li>
+        <li class="instruction">Select two tiles at a time to swap their colors</li>
+        <li class="instruction">Re-create the original grid to win</li>
+        <li class="instruction">Tiles with a dot in the middle are "fixed"</li>
+        <li class="instruction">You can edit the corner colors at any time but it will generate a new grid</li>
+      </ul>
 
       <div class="colortoolcontainer">
         <input class="input-rgbval color1" type="color" value="#ffffff"/>

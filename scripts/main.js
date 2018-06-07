@@ -1,3 +1,4 @@
+const rulesbtn = document.querySelector('.instructionsbtn')
 const submit = document.querySelector('.create-grid')
 const mirror = document.querySelector('.mirror')
 const hint = document.querySelector('.hint')
@@ -44,6 +45,18 @@ submit.addEventListener('click', (event) => {
     mirror.style.display = 'block'
     hint.style.display = 'block'
   }, 3000)
+})
+
+// Click Show Instructions:
+rulesbtn.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const rules = document.querySelector('.rules')
+  if (rules.classList.contains('show')) {
+    rulesbtn.textContent = 'View Instructions:'
+  } else {
+    rulesbtn.textContent = 'Hide Instructions:'
+  }
 })
 
 // Click Mirror button:
