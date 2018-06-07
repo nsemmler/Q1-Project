@@ -36,8 +36,31 @@
 }
 
 /* ----- Color Input View ----- */
-.instructions {
-  font-weight: bold;
+.btn:focus, .btn:active {
+  background: #182c4c;
+  color: white;
+  border: none;
+}
+
+.btn {
+  background: #182c4c;
+  color: white;
+  border: none;
+}
+
+.instructionsbtn {
+  margin-right: -5px;
+  font-weight: 500;
+}
+
+.fa-angle-down:before, .fa-angle-up:before {
+  font-weight: 501;
+  font-size: 20px;
+}
+
+.fa-angle-down, .fa-angle-up {
+  font-weight: 501;
+  font-size: 20px;
 }
 
 .rules {
@@ -82,18 +105,6 @@
 .mirror:focus, .mirror:active {
   outline: none !important;
   box-shadow: none !important;
-}
-
-.btn:focus, .btn:active {
-  background: #182c4c;
-  color: white;
-  border: none;
-}
-
-.btn {
-  background: #182c4c;
-  color: white;
-  border: none;
 }
 
 /* ----- Navbar ----- */
@@ -212,25 +223,6 @@
   height: 100px;
   border: 1px solid black;
 }
-
-/* .grid-solution {
-  border: 1px solid black;
-  max-width: 302px;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px 50px 50px;
-  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
-  align-self: center;
-}
-
-.grid-solution-container {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
-
 
 /* ----- Winner Banner ----- */
 .alertmsg {

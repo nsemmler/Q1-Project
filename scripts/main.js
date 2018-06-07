@@ -1,4 +1,5 @@
 const rulesbtn = document.querySelector('.instructionsbtn')
+const rulesicon = document.querySelector('.rulesicon')
 const submit = document.querySelector('.create-grid')
 const mirror = document.querySelector('.mirror')
 const hint = document.querySelector('.hint')
@@ -47,15 +48,30 @@ submit.addEventListener('click', (event) => {
   }, 3000)
 })
 
-// Click Show Instructions:
+// Click Show Instructions - button or icon next to it:
 rulesbtn.addEventListener('click', (event) => {
   event.preventDefault()
 
   const rules = document.querySelector('.rules')
   if (rules.classList.contains('show')) {
-    rulesbtn.textContent = 'View Instructions:'
+    rulesbtn.textContent = 'View Instructions'
+    rulesicon.className = 'fas fa-angle-down rulesicon'
   } else {
-    rulesbtn.textContent = 'Hide Instructions:'
+    rulesbtn.textContent = 'Hide Instructions'
+    rulesicon.className = 'fas fa-angle-up rulesicon'
+  }
+})
+
+rulesicon.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const rules = document.querySelector('.rules')
+  if (rules.classList.contains('show')) {
+    rulesbtn.textContent = 'View Instructions'
+    rulesicon.className = 'fas fa-angle-down rulesicon'
+  } else {
+    rulesbtn.textContent = 'Hide Instructions'
+    rulesicon.className = 'fas fa-angle-up rulesicon'
   }
 })
 
