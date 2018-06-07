@@ -1,8 +1,18 @@
+const rules = document.querySelector('.rules')
 const rulesbtn = document.querySelector('.instructionsbtn')
 const rulesicon = document.querySelector('.rulesicon')
 const submit = document.querySelector('.create-grid')
 const mirror = document.querySelector('.mirror')
 const hint = document.querySelector('.hint')
+
+// $('.rulesbtn').click(function () {
+//   console.log('clicked jQuery')
+// })
+//
+// rulesbtn.addEventListener('click', (event) => {
+//   event.preventDefault()
+//   console.log('clicked JS')
+// })
 
 var storedCornerInfo = localStorage.getItem('4corners')
 var originalGrid = {}
@@ -43,6 +53,7 @@ submit.addEventListener('click', (event) => {
 
   setTimeout(() => {
     scrambleGrid()
+    addClickEventsToTiles()
     mirror.style.display = 'block'
     hint.style.display = 'block'
   }, 3000)
@@ -52,7 +63,6 @@ submit.addEventListener('click', (event) => {
 rulesbtn.addEventListener('click', (event) => {
   event.preventDefault()
 
-  const rules = document.querySelector('.rules')
   if (rules.classList.contains('show')) {
     rulesbtn.textContent = 'View Instructions'
     rulesicon.className = 'fas fa-angle-down rulesicon'
@@ -65,7 +75,6 @@ rulesbtn.addEventListener('click', (event) => {
 rulesicon.addEventListener('click', (event) => {
   event.preventDefault()
 
-  const rules = document.querySelector('.rules')
   if (rules.classList.contains('show')) {
     rulesbtn.textContent = 'View Instructions'
     rulesicon.className = 'fas fa-angle-down rulesicon'
@@ -74,6 +83,16 @@ rulesicon.addEventListener('click', (event) => {
     rulesicon.className = 'fas fa-angle-up rulesicon'
   }
 })
+
+// do {
+//   rules.style.paddingTop = '0'
+//   rules.style.paddingBottom = '0'
+// } while (rules.classList.contains('collapsing'))
+
+// do {
+//   rules.style.paddingTop = '8px'
+//   rules.style.paddingBottom = '8px'
+// } while (!rules.classList.contains('collapsing'))
 
 // Click Mirror button:
 mirror.addEventListener('click', (event) => {
@@ -94,13 +113,13 @@ hint.addEventListener('click', (event) => {
   event.preventDefault()
 
   const progress = document.querySelector('.progress')
-  if (progress.style.display === 'none') {
-    progress.style.display = 'block'
+  if (progress.style.opacity === '0') {
+    progress.style.opacity = '1'
 
-    const alert = document.querySelector('.alert')
-    if (alert.style.display === 'none') progress.style.marginTop = '15px'
+    // const alert = document.querySelector('.alert')
+    // if (alert.style.display === 'none') progress.style.marginTop = '15px'
   } else {
-    progress.style.display = 'none'
+    progress.style.opacity = '0'
   }
 })
 
@@ -131,7 +150,7 @@ let firstColor
 let secondColor
 let correctTilesObj = {}
 
-setTimeout(() => {
+function addClickEventsToTiles () {
   const allTiles = document.querySelectorAll('.tile')
   const tiles = Array.from(allTiles)
 
@@ -171,7 +190,7 @@ setTimeout(() => {
       }
     })
   })
-}, 250)
+}
 
 // Shuffle grid
 let swapColorsObj = {}
@@ -241,14 +260,14 @@ function checkUserAnswer (correctTilesObj) {
 
   let correctSolution = [...new Set(Object.values(correctTilesObj))]
   if (correctSolution.length === 1 && correctSolution[0] === true) {
-    const alert = document.querySelector('.alert-success')
+    const alert = document.querySelector('.winner-alert')
 
     if (alert.style.display == 'none') {
       alert.style.display = 'flex'
 
       setTimeout(() => {
         alert.style.display = 'none'
-      }, 2000)
+      }, 5000)
     }
   }
 }
@@ -339,5 +358,5 @@ function updateHintValue (correctTilesObj) {
   const percentageOfTilesCorrect = Math.ceil((numTrue / numTiles) * 100)
   progressBar.style.width = `${percentageOfTilesCorrect}%`
   progressBar.style.ariaValuenow = `${percentageOfTilesCorrect}`
-  progressBar.textContent = `${percentageOfTilesCorrect}%`
+  // progressBar.textContent = `${percentageOfTilesCorrect}%`
 }
