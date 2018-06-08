@@ -6,19 +6,27 @@ function generateGrid (gridWidth, gridHeight) {
   toprowArr.shift()
   const minIDLowRow = numTiles - gridWidth + 1
 
-  let topRowIDs = []
-  let lowRowIDs = []
-  let firstColIDs = []
-  let lastColIDs = []
-
+  // localStorage if exists
   var storedCornerInfo = localStorage.getItem('4corners')
   let corners = ''
   if (storedCornerInfo) corners = JSON.parse(storedCornerInfo)
 
-  colorCorners(corners)
-
+  let topRowIDs = []
+  let lowRowIDs = []
+  let firstColIDs = []
+  let lastColIDs = []
   const tiles = document.querySelectorAll('.tile')
   let tilesArr = Array.from(tiles)
+
+  colorCorners(corners)
+  colorNonCorners(tilesArr, toprowArr, topRowIDs, lowRowIDs, firstColIDs, lastColIDs, gridWidth, gridHeight, minIDLowRow, numTiles)
+
+  let originalGrid = {}
+  preserveOriginalGrid(tilesArr, originalGrid)
+  return originalGrid
+}
+
+function colorNonCorners (tilesArr, toprowArr, topRowIDs, lowRowIDs, firstColIDs, lastColIDs, gridWidth, gridHeight, minIDLowRow, numTiles) {
   let coloredIndexesArr = []
   let toprowAcc = 1
   let lowrowAcc = 1
@@ -47,10 +55,6 @@ function generateGrid (gridWidth, gridHeight) {
   })
 
   colorRemainingTiles(tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastColIDs, numTiles, gridWidth, gridHeight)
-
-  let originalGrid = {}
-  preserveOriginalGrid(tilesArr, originalGrid)
-  return originalGrid
 }
 
 function colorCorners(corners) {
@@ -98,8 +102,6 @@ function colorEdge (tile, edgeAcc, corners, edgeSteps, startCorner, endCorner) {
   tile.style.background = 'rgb(' + [tileRColor, tileGColor, tileBColor].join(',') + ')'
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
 function colorTopRow (tile, toprowAcc, corners, rowSteps) {
   colorEdge (tile, toprowAcc, corners, rowSteps, 'tl', 'tr')
 }
@@ -124,7 +126,12 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
   let colAcc = 1
   let modulusVal = 2
 
-  // by row
+  fetchColorsOfBoundaryRowTiles(tilesArr, tileColors, rowAcc, rowindex, rowSteps, firstColIDs, lastColIDs)
+  fetchColorsOfBoundaryColTiles(tilesArr, tileColors, colAcc, colindex, colSteps, topRowIDs, lowRowIDs, rowSteps, modulusVal)
+  mixColorsAndFill(topRowIDs, lowRowIDs, firstColIDs, lastColIDs, tileColors)
+}
+
+function fetchColorsOfBoundaryRowTiles (tilesArr, tileColors, rowAcc, rowindex, rowSteps, firstColIDs, lastColIDs) {
   tilesArr.forEach((tile) => {
     const tileID = parseInt(tile.id)
     const startRowID = firstColIDs[rowindex]
@@ -134,28 +141,7 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
       const startTile = document.getElementById(startRowID)
       const endTile = document.getElementById(endRowID)
 
-      const startR = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
-      const startG = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
-      const startB = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
-
-      const endR = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
-      const endG = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
-      const endB = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
-
-      const rStep = Math.floor((endR - startR) / rowSteps)
-      const gStep = Math.floor((endG - startG) / rowSteps)
-      const bStep = Math.floor((endB - startB) / rowSteps)
-
-      const tileRColor = startR + (rowAcc * rStep)
-      const tileGColor = startG + (rowAcc * gStep)
-      const tileBColor = startB + (rowAcc * bStep)
-
-      if (tileColors[tileID]) {
-        tileColors[tileID][1] = [tileRColor, tileGColor, tileBColor]
-      } else {
-        tileColors[tileID] = [[tileRColor, tileGColor, tileBColor], null]
-      }
-      rowAcc++
+      determineTileColor(startTile, endTile, rowSteps, rowAcc, tileColors, tileID)
     }
 
     if (tileID % rowSteps === 0 && tileID > rowSteps) {
@@ -163,9 +149,11 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
       rowAcc = 1
     }
   })
+}
 
-  const numOfCols = [...Array(rowSteps - 2).keys()].map(x => x+1) // [1, 2, 3, 4]
-  const arrOfEmptyColTiles = [...Array(colSteps - 2).keys()].map(x => x+1) // [1, 2, 3, 4, 5, 6, 7, 8]
+function fetchColorsOfBoundaryColTiles (tilesArr, tileColors, colAcc, colindex, colSteps, topRowIDs, lowRowIDs, rowSteps, modulusVal) {
+  const numOfCols = [...Array(rowSteps - 2).keys()].map(x => x+1)
+  const arrOfEmptyColTiles = [...Array(colSteps - 2).keys()].map(x => x+1)
   const arrLength = arrOfEmptyColTiles.length // 8
 
   numOfCols.forEach((column) => {
@@ -175,34 +163,41 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
       const startTile = document.getElementById(modulusVal)
       const endTile = document.getElementById(6 * (arrLength + 1) + modulusVal)
 
-      const startR = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
-      const startG = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
-      const startB = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
-
-      const endR = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
-      const endG = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
-      const endB = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
-
-      const rStep = Math.floor((endR - startR) / colSteps)
-      const gStep = Math.floor((endG - startG) / colSteps)
-      const bStep = Math.floor((endB - startB) / colSteps)
-
-      const tileRColor = startR + (index * rStep)
-      const tileGColor = startG + (index * gStep)
-      const tileBColor = startB + (index * bStep)
-
-      if (tileColors[tileID]) {
-        tileColors[tileID][1] = [tileRColor, tileGColor, tileBColor]
-      } else {
-        tileColors[tileID] = [[tileRColor, tileGColor, tileBColor], ]
-      }
-      index++
+      determineTileColor(startTile, endTile, colSteps, index, tileColors, tileID)
     })
 
     index = 1
-    modulusVal++ // increase value of X % 6
+    modulusVal++
   })
+}
 
+function determineTileColor (startTile, endTile, step, index, tileColors, tileID) {
+  const startR = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
+  const startG = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
+  const startB = parseInt(startTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
+
+  const endR = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[0])
+  const endG = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[1])
+  const endB = parseInt(endTile.style.background.replace(/ /g, '').replace('rgb(', '').replace(')', '').split(',')[2])
+
+  const rStep = Math.floor((endR - startR) / step)
+  const gStep = Math.floor((endG - startG) / step)
+  const bStep = Math.floor((endB - startB) / step)
+
+  const tileRColor = startR + (index * rStep)
+  const tileGColor = startG + (index * gStep)
+  const tileBColor = startB + (index * bStep)
+
+  if (tileColors[tileID]) {
+    tileColors[tileID][1] = [tileRColor, tileGColor, tileBColor]
+  } else {
+    tileColors[tileID] = [[tileRColor, tileGColor, tileBColor], null]
+  }
+  index++
+}
+
+// remove tile IDs of border tiles from tileColors to not re-color over them, then color tiles
+function mixColorsAndFill (topRowIDs, lowRowIDs, firstColIDs, lastColIDs, tileColors) {
   topRowIDs.forEach((id) => { if (tileColors[id]) delete tileColors[id] })
   lowRowIDs.forEach((id) => { if (tileColors[id]) delete tileColors[id] })
   firstColIDs.forEach((id) => { if (tileColors[id]) delete tileColors[id] })
@@ -218,10 +213,22 @@ function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastC
   }
 }
 
+// Make a copy of the solution before shuffling the grid
 function preserveOriginalGrid (tilesArr, originalGrid) {
   tilesArr.forEach((tile) => {
     const color = tile.style.background
     const id = tile.id
     originalGrid[id] = color
+  })
+}
+
+// Color solution based on originalGrid
+function colorInSolutionGrid () {
+  const solutionTiles = document.querySelectorAll('.soln-tile')
+  const solution = Array.from(solutionTiles)
+
+  solution.forEach((solntile) => {
+    const id = solntile.id.replace('S', '')
+    solntile.style.background = originalGrid[id]
   })
 }
