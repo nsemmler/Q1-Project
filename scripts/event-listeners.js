@@ -5,6 +5,7 @@ const rulesicon = document.querySelector('.rulesicon')
 const mirror = document.querySelector('.mirror')
 const hint = document.querySelector('.hint')
 const submit = document.querySelector('.create-grid')
+let mirrorAcc = 0
 
 // Click Submit button:
 submit.addEventListener('click', (event) => {
@@ -14,6 +15,7 @@ submit.addEventListener('click', (event) => {
   localStorage.setItem('4corners', JSON.stringify(cornersInfo))
   originalGrid = generateGrid(6, 10)
 
+  reclickShowSolutionBtnIfSolutionShown ()
   createSolutionGrid(originalGrid)
   colorInSolutionGrid()
   toggleFixedTileIconColor()
@@ -31,6 +33,7 @@ submit.addEventListener('click', (event) => {
 mirror.addEventListener('click', (event) => {
   event.preventDefault()
 
+  mirrorAcc++
   const solution = document.querySelector('.solution')
   if (solution.style.display === 'none') {
     solution.style.display = 'grid'
@@ -106,4 +109,10 @@ function fetchCornersInfo () {
   }
 
   return cornersInfo
+}
+
+function reclickShowSolutionBtnIfSolutionShown () {
+  if (mirrorAcc % 2 === 1 && mirrorAcc > 0) {
+    mirror.click()
+  }
 }
