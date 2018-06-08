@@ -1,3 +1,5 @@
+const instructionsdiv = document.querySelector('.rules-header-and-icon')
+const rules = document.querySelector('.rules')
 const rulesbtn = document.querySelector('.instructionsbtn')
 const rulesicon = document.querySelector('.rulesicon')
 const mirror = document.querySelector('.mirror')

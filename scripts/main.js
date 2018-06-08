@@ -1,6 +1,3 @@
-const instructionsdiv = document.querySelector('.rules-header-and-icon')
-const rules = document.querySelector('.rules')
-
 // if localStorage exists, fill in User colors with previous
 var storedCornerInfo = localStorage.getItem('4corners')
 var originalGrid = {}
