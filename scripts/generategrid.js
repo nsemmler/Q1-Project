@@ -78,84 +78,42 @@ function colorCorners(corners) {
   }
 }
 
-function colorTopRow (tile, toprowAcc, corners, rowSteps) {
-  const startR = corners['tl'][0]
-  const startG = corners['tl'][1]
-  const startB = corners['tl'][2]
+function colorEdge (tile, edgeAcc, corners, edgeSteps, startCorner, endCorner) {
+  const startR = corners[startCorner][0]
+  const startG = corners[startCorner][1]
+  const startB = corners[startCorner][2]
 
-  const endR = corners['tr'][0]
-  const endG = corners['tr'][1]
-  const endB = corners['tr'][2]
+  const endR = corners[endCorner][0]
+  const endG = corners[endCorner][1]
+  const endB = corners[endCorner][2]
 
-  const rStep = Math.floor((endR - startR) / rowSteps)
-  const gStep = Math.floor((endG - startG) / rowSteps)
-  const bStep = Math.floor((endB - startB) / rowSteps)
+  const rStep = Math.floor((endR - startR) / edgeSteps)
+  const gStep = Math.floor((endG - startG) / edgeSteps)
+  const bStep = Math.floor((endB - startB) / edgeSteps)
 
-  const tileRColor = startR + (toprowAcc * rStep)
-  const tileGColor = startG + (toprowAcc * gStep)
-  const tileBColor = startB + (toprowAcc * bStep)
+  const tileRColor = startR + (edgeAcc * rStep)
+  const tileGColor = startG + (edgeAcc * gStep)
+  const tileBColor = startB + (edgeAcc * bStep)
 
   tile.style.background = 'rgb(' + [tileRColor, tileGColor, tileBColor].join(',') + ')'
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+function colorTopRow (tile, toprowAcc, corners, rowSteps) {
+  colorEdge (tile, toprowAcc, corners, rowSteps, 'tl', 'tr')
 }
 
 function colorBottomRow (tile, lowrowAcc, corners, rowSteps) {
-  const startR = corners['bl'][0]
-  const startG = corners['bl'][1]
-  const startB = corners['bl'][2]
-
-  const endR = corners['br'][0]
-  const endG = corners['br'][1]
-  const endB = corners['br'][2]
-
-  const rStep = Math.floor((endR - startR) / rowSteps)
-  const gStep = Math.floor((endG - startG) / rowSteps)
-  const bStep = Math.floor((endB - startB) / rowSteps)
-
-  const tileRColor = startR + (lowrowAcc * rStep)
-  const tileGColor = startG + (lowrowAcc * gStep)
-  const tileBColor = startB + (lowrowAcc * bStep)
-
-  tile.style.background = 'rgb(' + [tileRColor, tileGColor, tileBColor].join(',') + ')'
+  colorEdge (tile, lowrowAcc, corners, rowSteps, 'bl', 'br')
 }
 
 function colorFirstColumn (tile, firstcolAcc, corners, colSteps) {
-  const startR = corners['tl'][0]
-  const startG = corners['tl'][1]
-  const startB = corners['tl'][2]
-
-  const endR = corners['bl'][0]
-  const endG = corners['bl'][1]
-  const endB = corners['bl'][2]
-
-  const rStep = Math.floor((endR - startR) / colSteps)
-  const gStep = Math.floor((endG - startG) / colSteps)
-  const bStep = Math.floor((endB - startB) / colSteps)
-
-  const tileRColor = startR + (firstcolAcc * rStep)
-  const tileGColor = startG + (firstcolAcc * gStep)
-  const tileBColor = startB + (firstcolAcc * bStep)
-
-  tile.style.background = 'rgb(' + [tileRColor, tileGColor, tileBColor].join(',') + ')'
+  colorEdge (tile, firstcolAcc, corners, colSteps, 'tl', 'bl')
 }
 
 function colorLastColumn (tile, lastcolAcc, corners, colSteps) {
-  const startR = corners['tr'][0]
-  const startG = corners['tr'][1]
-  const startB = corners['tr'][2]
-
-  const endR = corners['br'][0]
-  const endG = corners['br'][1]
-  const endB = corners['br'][2]
-
-  const rStep = Math.floor((endR - startR) / colSteps)
-  const gStep = Math.floor((endG - startG) / colSteps)
-  const bStep = Math.floor((endB - startB) / colSteps)
-
-  const tileRColor = startR + (lastcolAcc * rStep)
-  const tileGColor = startG + (lastcolAcc * gStep)
-  const tileBColor = startB + (lastcolAcc * bStep)
-
-  tile.style.background = 'rgb(' + [tileRColor, tileGColor, tileBColor].join(',') + ')'
+  colorEdge (tile, lastcolAcc, corners, colSteps, 'tr', 'br')
 }
 
 function colorRemainingTiles (tilesArr, topRowIDs, lowRowIDs, firstColIDs, lastColIDs, numTiles, rowSteps, colSteps) {
