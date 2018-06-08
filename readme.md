@@ -18,9 +18,9 @@ My only issue with the original app is that it doesn't allow the user any custom
 - I want to move seamlessly from the color input to the puzzle.
 
 ## Screenshots
-<img src="https://imgur.com/XtPG2NE" width="250" alt="input color" />
-<img src="https://imgur.com/cjYweQJ" width="250" alt="shuffled grid" />
-<img src="https://imgur.com/mg8sVV0" width="250" alt="solution banner" />
+<img src="https://ibb.co/f47wOT" width="250" alt="input color" />
+<img src="https://ibb.co/kpqGOT" width="250" alt="shuffled grid" />
+<img src="https://ibb.co/ms6ZA8" width="250" alt="solution banner" />
 
 ## Installation
 - Fork and clone this repository
