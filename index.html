@@ -6,6 +6,7 @@
     <title>Hue Clone</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="./stylesheets/animations.css">
     <link rel="stylesheet" href="./stylesheets/main.css">
     <script defer src="./scripts/templates.js"></script>
     <script defer src="./scripts/tiles.js"></script>
@@ -17,74 +18,78 @@
       <h1 class="navbar-brand" href="#">H<i class="far fa-heart"></i>E</h1>
     </nav>
 
-    <div class="input-colors-container">
-      <div class="rulesbtn-container">
-        <div class="rules-header-and-icon">
-          <button class="instructionsbtn" data-toggle="collapse" data-target=".rules">View Instructions</i></button>
-          <i class="fas fa-angle-down rulesicon" data-toggle="collapse" data-target=".rules"></i>
+    <div class="main">
+      <div class="input-colors-container">
+        <div class="rulesbtn-container">
+          <div class="rules-header-and-icon">
+            <button class="instructionsbtn" data-toggle="collapse" data-target=".rules">View Instructions</i></button>
+            <i class="fas fa-angle-down rulesicon" data-toggle="collapse" data-target=".rules"></i>
+          </div>
+        </div>
+
+        <ul class="rules collapse">
+          <li class="instruction">Select four colors (one for each corner)</li>
+          <li class="instruction">Create the grid</li>
+          <li class="instruction">The tiles will be shuffled after 3 seconds</li>
+          <li class="instruction">Select two tiles at a time to swap their colors</li>
+          <li class="instruction">Re-create the original grid to win</li>
+          <li class="instruction">Tiles with a dot in the middle are "fixed"</li>
+          <li class="instruction">You can edit the corner colors at any time but it will generate a new grid</li>
+        </ul>
+
+        <div class="colortoolcontainer">
+          <div class="color-input-layout-container">
+            <div class="corner-input">
+              <img class="cornericon" src="./icons/top-left.png" alt="Top Left Corner Color" height="40px" width="40px">
+              <input class="input-rgbval color1" type="color" value="#ffffff"/>
+            </div>
+            <div class="corner-input">
+              <input class="input-rgbval color2" type="color" value="#ffffff"/>
+              <img class="cornericon" src="./icons/top-right.png" alt="Top Right Corner Color" height="40px" width="40px">
+            </div>
+            <div class="corner-input">
+              <img class="cornericon" src="./icons/bottom-left.png" alt="Bottom Left Corner Color" height="40px" width="40px">
+              <input class="input-rgbval color3" type="color" value="#ffffff"/>
+            </div>
+            <div class="corner-input">
+              <input class="input-rgbval color4" type="color" value="#ffffff"/>
+              <img class="cornericon" src="./icons/bottom-right.png" alt="Bottom Right Corner Color" height="40px" width="40px">
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="submit">
+          <button type="button" class="btn create-grid">Create Grid</button>
         </div>
       </div>
 
-      <ul class="rules collapse">
-        <li class="instruction">Select four colors (one for each corner)</li>
-        <li class="instruction">Create the grid</li>
-        <li class="instruction">The tiles will be shuffled after 3 seconds</li>
-        <li class="instruction">Select two tiles at a time to swap their colors</li>
-        <li class="instruction">Re-create the original grid to win</li>
-        <li class="instruction">Tiles with a dot in the middle are "fixed"</li>
-        <li class="instruction">You can edit the corner colors at any time but it will generate a new grid</li>
-      </ul>
-
-      <div class="colortoolcontainer">
-        <div class="color-input-layout-container">
-          <div class="corner-input">
-            <img class="cornericon" src="./icons/top-left.png" alt="Top Left Corner Color" height="40px" width="40px">
-            <input class="input-rgbval color1" type="color" value="#ffffff"/>
+      <div class="puzzle-container">
+        <div class="grid-container">
+          <div class="progress" style="opacity: 0;">
+            <div class="progress-bar" role="progressbar" style="width: 7%;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <div class="corner-input">
-            <input class="input-rgbval color2" type="color" value="#ffffff"/>
-            <img class="cornericon" src="./icons/top-right.png" alt="Top Right Corner Color" height="40px" width="40px">
+          <div class="grid">
           </div>
-          <div class="corner-input">
-            <img class="cornericon" src="./icons/bottom-left.png" alt="Bottom Left Corner Color" height="40px" width="40px">
-            <input class="input-rgbval color3" type="color" value="#ffffff"/>
-          </div>
-          <div class="corner-input">
-            <input class="input-rgbval color4" type="color" value="#ffffff"/>
-            <img class="cornericon" src="./icons/bottom-right.png" alt="Bottom Right Corner Color" height="40px" width="40px">
+          <div class="grid-tools">
+            <div class="toolbelt">
+              <button type="button" class="btn mirror" style="display: none;">Show Solution</button>
+              <button type="button" class="btn hint" style="display: none;">Hint</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <br>
-
-      <div class="submit">
-        <button type="button" class="btn create-grid">Create Grid</button>
-      </div>
-    </div>
-
-    <div class="grid-container">
-      <div class="progress" style="opacity: 0;">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <div class="grid">
-      </div>
-      <div class="grid-tools">
-        <div class="toolbelt">
-          <button type="button" class="btn mirror" style="display: none;">Show Solution</button>
-          <button type="button" class="btn hint" style="display: none;">Hint</button>
+        <div class="grid-solution">
+          <div class="solution" style="display: none;">
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="grid-solution">
-      <div class="solution" style="display: none;">
-      </div>
-    </div>
-
-    <div class="winner-banner container">
-      <div class="alert winner-alert alert-dismissible fade show" role="alert" style="display: none;">
-        <p class="alertmsg"><strong>You won, congratulations!</strong></p>
+        <div class="winner-banner container">
+          <div class="alert winner-alert alert-dismissible fade show" role="alert" style="display: none;">
+            <p class="alertmsg"><strong>You won, congratulations!</strong></p>
+          </div>
+        </div>
       </div>
     </div>
 
