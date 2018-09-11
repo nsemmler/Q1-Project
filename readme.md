@@ -25,6 +25,6 @@ npm run dev
 ```
 
 ## Screenshots
-<img align="left" src="https://imgur.com/a/d8nnjyk" width="250" alt="input color" />
-<img align="left" src="https://imgur.com/a/VaaYGv4" width="250" alt="shuffled grid" />
-<img align="left" src="https://imgur.com/a/h9wOURe" width="250" alt="solution banner" />
+<img align="left" src="./images/hue1.png" width="250" alt="input color" />
+<img align="left" src="./images/hue2.png" width="250" alt="shuffled grid" />
+<img align="left" src="./images/hue3.png" width="250" alt="solution banner" />
