@@ -6,6 +6,13 @@ This mobile-friendly puzzle game allows a user to select 4 colors, one for each 
 Once the corners have their assigned colors, the remainder of the grid is generated using these
 colors and the grid is shuffled (all except for the corners).  Re-arrange the tiles to form the original grid to win!
 
+Don't like the colors you chose?  Change them at any time and re-generate a new grid!
+
+The 'Show Progress' button toggles a progress bar above the grid that shows the current % of tiles
+in the correct position.
+
+Selecting colors closer together on the color wheel will increase difficulty.
+
 ## Installation
 To run locally fork and clone this repository.  From that directory:
 
@@ -18,6 +25,6 @@ npm run dev
 ```
 
 ## Screenshots
-<img align="left" src="http://funkyimg.com/i/2HfBD.png" width="250" alt="input color" />
-<img align="left" src="http://funkyimg.com/i/2HfBE.png" width="250" alt="shuffled grid" />
-<img align="left" src="http://funkyimg.com/i/2HfBF.png" width="250" alt="solution banner" />
+<img align="left" src="https://imgur.com/sSUuDuD" width="250" alt="input color" />
+<img align="left" src="https://imgur.com/JI12T4C" width="250" alt="shuffled grid" />
+<img align="left" src="https://imgur.com/BU5xCVt" width="250" alt="solution banner" />
