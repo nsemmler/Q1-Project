@@ -2,8 +2,9 @@
 
 [Play Hue!](https://hue-puzzle.surge.sh)
 
-A user selects 4 colors, one for each corner of the grid.  Once the corner colors have been selected, the remainder
-of the grid is filled in and the tiles are shuffled.  Your goal is to re-arrange the tiles to form the original grid.
+This mobile-friendly puzzle game allows a user to select 4 colors, one for each corner of the grid.
+Once the corners have their assigned colors, the remainder of the grid is generated using these
+colors and the grid is shuffled (all except for the corners).  Re-arrange the tiles to form the original grid to win!
 
 ## Installation
 To run locally fork and clone this repository.  From that directory:
